@@ -20,22 +20,22 @@ function App() {
 
   const handleAddWord = () => {
     if (!inputWord) {
-      window.alert("추가할 단어를 입력해주세요.")
+      window.alert("추가할 단어를 입력해줘용 자기야~")
       return
     }
 
     if (inputWord.length === 0) {
-      window.alert("추가할 단어를 입력해주세요.")
+      window.alert("추가할 단어를 입력해줘용 자기야~")
       return
     }
 
     if (!textNumLimit) {
-      window.alert("개수 제한을 입력해주세요.")
+      window.alert("개수 제한을 입력해줘용 자기야~")
       return
     }
 
     if (textNumLimit <= 0) {
-      window.alert("개수 제한은 0보다 큰 수를 입력해주세요.")
+      window.alert("개수 제한은 0보다 큰 수를 입력해줘용 자기야~")
       return
     }
 
@@ -79,13 +79,13 @@ function App() {
               <div className="homepage-first-area">
                 <div className="homepage-first-area-left-side">
                   <div className="title homepage-title">
-                    만들어보자
+                    💛우주에서 제일 사랑해 자기야~🧡
                   </div>
                   <div className="title homepage-title">
                     <div className='homepage-divide-row-area'>
                       <div className='homepage-divide-col-area'>
                         <div className="subtitle homepage-subtitle">
-                          🔻내용입력🔻
+                          🔻내용입력해줘 자기얌~❤🔻
                         </div>
                         <textarea
                           placeholder='내용을 입력해줘~'
@@ -110,7 +110,7 @@ function App() {
                   <div className="title homepage-title">
                     <div className="subtitle homepage-subtitle">
                       <div className='homepage-divide-col-area'>
-                        포함 단어 추가
+                        포함 단어 추가하는 곳이에용~
                       </div>
                       <div>
                         <label>
