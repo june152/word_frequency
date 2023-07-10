@@ -76,21 +76,24 @@ function App() {
         <div className="page-content">
           <div className='content-wrapper'>
             <div className="homepage-container">
+                <div className='homepage-logo-container' style={{fontSize: "40px", fontWeight: "bold", width: "100%"}}>
+                  💛우주에서 제일 사랑해 자기야~🧡
+                </div>
               <div className="homepage-first-area">
                 <div className="homepage-first-area-left-side">
-                  <div className="title homepage-title">
+                  {/* <div className="title homepage-title">
                     💛우주에서 제일 사랑해 자기야~🧡
-                  </div>
+                  </div> */}
                   <div className="title homepage-title">
                     <div className='homepage-divide-row-area'>
                       <div className='homepage-divide-col-area'>
                         <div className="subtitle homepage-subtitle">
-                          🔻내용입력해줘 자기얌~❤🔻
+                          🔻내용 입력해줘 자기얌~❤🔻
                         </div>
                         <textarea
                           placeholder='내용을 입력해줘~'
                           className='inputarea'
-                          rows={50}
+                          rows={45}
                           cols={50}
                           onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
                             let spaceDel = (e.target.value).split(" ").join("")
@@ -112,20 +115,22 @@ function App() {
                       <div className='homepage-divide-col-area'>
                         포함 단어 추가하는 곳이에용~
                       </div>
-                      <div>
-                        <label>
+                      <label>
                           단어 : 
-                          <input type='text' placeholder='단어 입력'
+                      </label>
+                      <div>
+                        <input type='text' placeholder='단어 입력'
                             value={inputWord}
                             onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                               setInputWord(e.target.value)
                             }}
                           />
-                        </label>
                       </div>
                       <label>
                         개수 제한 : 
-                          <input type='number' placeholder='개수 제한 입력'
+                      </label>
+                      <div>
+                        <input type='number' placeholder='개수 제한 입력'
                           value={textNumLimit}
                           onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                             let num = Number(e.target.value)
@@ -136,7 +141,8 @@ function App() {
                             }
                           }}
                           />
-                      </label>
+                      </div>
+                      
                       <button className='btn_blue' onClick={handleAddWord}>추가</button>
                     </div>
                     <div className="subtitle homepage-subtitle">
