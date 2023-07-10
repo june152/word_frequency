@@ -77,8 +77,9 @@ function App() {
           <div className='content-wrapper'>
             <div className="homepage-container">
                 <div className='homepage-logo-container' style={{fontSize: "40px", fontWeight: "bold", width: "100%"}}>
-                  💛우주에서 제일 사랑해 자기야~🧡
+                  우주에서 제일 사랑해 자기야
                 </div>
+              <p style={{ width: "100%", textAlign: "center", margin: "0", fontSize: "30px" }}>🧡💛💚💜💙🤎</p>
               <div className="homepage-first-area">
                 <div className="homepage-first-area-left-side">
                   {/* <div className="title homepage-title">
@@ -88,12 +89,12 @@ function App() {
                     <div className='homepage-divide-row-area'>
                       <div className='homepage-divide-col-area'>
                         <div className="subtitle homepage-subtitle">
-                          🔻내용 입력해줘 자기얌~❤🔻
+                          🔻내용 입력해줘 자기야🔻
                         </div>
                         <textarea
                           placeholder='내용을 입력해줘~'
                           className='inputarea'
-                          rows={45}
+                          rows={42}
                           cols={50}
                           onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
                             let spaceDel = (e.target.value).split(" ").join("")
@@ -102,6 +103,7 @@ function App() {
                             wordCheck(e.target.value)
                             // console.log("글자 수(공백제외) : ", enterDel.length)
                           }}
+                          style={{marginBottom: "60px"}}
                         />
                       </div>
                     </div>
@@ -118,8 +120,8 @@ function App() {
                       <label>
                           단어 : 
                       </label>
-                      <div>
-                        <input type='text' placeholder='단어 입력'
+                      <div style={{marginBottom: "20px"}}>
+                        <input className='inputtag' type='text' placeholder='단어 입력'
                             value={inputWord}
                             onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                               setInputWord(e.target.value)
@@ -130,7 +132,7 @@ function App() {
                         개수 제한 : 
                       </label>
                       <div>
-                        <input type='number' placeholder='개수 제한 입력'
+                        <input className='inputtag' type='number' placeholder='개수 제한 입력'
                           value={textNumLimit}
                           onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                             let num = Number(e.target.value)
@@ -158,6 +160,14 @@ function App() {
                       </ul>
                     </div>
                   </div>
+                  <textarea
+                          placeholder='메모장'
+                          className='inputarea sohee'
+                          rows={15}
+                          cols={50}
+                  />
+                  <div className='sohee' style={{ width: "100%", textAlign: "right", paddingTop: "50px", fontWeight: "bold" }}>우리 소히 전용~</div>
+                  <div className='sohee' style={{width: "91%", textAlign: "right"}}>소히 ❤ 준표</div>
                 </div>
               </div>
             </div>

@@ -17,6 +17,10 @@
   background-color: rgb(0, 0, 0);
 }
 
+html {
+  background-color: #ffe9f4;
+}
+
 .page-content {
   background-color: #ffe9f4;
   position: relative;
@@ -36,13 +40,13 @@
 .page-content:before {
   left: 0;
   z-index: 1;
-  background-color: #fff7f2;
+  background-color: black;
 }
 
 .page-content:after {
   right: 0;
   z-index: 1;
-  background-color: #fff7f2;
+  background-color: black;
 }
 
 .content-wrapper {
@@ -76,14 +80,15 @@ button.close {
 }
 
 .btn_blue {
+  margin-top: 10px;
   font-size: 13px;
   font-weight: 600;
-  color: #5b73d8;
+  color: black;
   background: #fff;
   height: 24px;
   padding: 0 10px;
   border-radius: 3px;
-  border: 1px solid #5b73d8;
+  border: 1px solid black;
   cursor: pointer;
 }
 
@@ -139,8 +144,8 @@ button.close {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 80px;
-  padding-bottom: 50px;
+  padding-top: 40px;
+  padding-bottom: 40px;
   background-color: #ffe9f4;
 }
 
@@ -179,7 +184,7 @@ button.close {
 
 .inputarea {
   resize: none;
-  border: none;
+  border: solid black;
   overflow-y: hidden;
   border-radius: 15px;
   padding: 10px 5px 5px 10px;
@@ -222,6 +227,12 @@ button.close {
   display: flex;
 }
 
+.inputtag {
+  padding: 5px;
+  border-radius: 10px;
+  border: solid black;
+}
+
 @media (max-width: 1024px) {
   .homepage-first-area {
     /* flex-direction: column; */
@@ -235,6 +246,7 @@ button.close {
     /* Changed: set direction to column */
     align-items: flex-start;
     width: 100%;
+    margin-right: 25px;
     order: 2;
   }
 
@@ -247,6 +259,10 @@ button.close {
   .inputarea {
     resize: none;
     overflow-y: auto;
+  }
+
+  .sohee {
+    order: 3;
   }
 
   .homepage-subtitle {
