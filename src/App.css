@@ -36,13 +36,13 @@
 .page-content:before {
   left: 0;
   z-index: 1;
-  background-color: #2447b84f;
+  background-color: #cfffe5;
 }
 
 .page-content:after {
   right: 0;
   z-index: 1;
-  background-color: #2447b84f;
+  background-color: #cfffe5;
 }
 
 .content-wrapper {
@@ -65,19 +65,6 @@
   line-height: 28px;
   width: 70%;
   margin-top: 25px;
-}
-
-.page-footer {
-  position: block;
-  background-color: #2447b84f;
-}
-
-.page-footer::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  border-top: 2px solid var(--tertiary-color);
 }
 
 button.close {

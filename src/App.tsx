@@ -8,7 +8,6 @@ interface WordForm {
 }
 
 function App() {
-  const [inputText, setInputText] = useState("")
   const [inputWord, setInputWord] = useState("")
   const [textLength, setTextLength] = useState(0)
   const [textNumLimit, setTextNumLimit] = useState(0)
@@ -97,7 +96,6 @@ function App() {
                             let spaceDel = (e.target.value).split(" ").join("")
                             let enterDel = spaceDel.split("\n").join("")
                             setTextLength(enterDel.length)
-                            setInputText(e.target.value)
                             wordCheck(e.target.value)
                             // console.log("글자 수(공백제외) : ", enterDel.length)
                           }}
