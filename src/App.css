@@ -1,38 +1,250 @@
-.App {
-  text-align: center;
+@import "/src/data/styles.css";
+
+::-webkit-scrollbar {
+  width: 10px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+::-webkit-scrollbar-thumb {
+  background-color: #383636;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(0, 0, 0);
+}
+
+.page-content {
+  background-color: white;
+  position: relative;
+}
+
+.page-content:before,
+.page-content:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: calc((100% - 1200px) / 2);
+  background-color: #fafafa;
+  border: 1px solid #f4f4f5;
+}
+
+.page-content:before {
+  left: 0;
+  z-index: 1;
+  background-color: #2447b84f;
+}
+
+.page-content:after {
+  right: 0;
+  z-index: 1;
+  background-color: #2447b84f;
+}
+
+.content-wrapper {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.title {
+  color: var(--primary-color);
+  font-family: var(--secondary-font);
+  font-size: 45px;
+  font-weight: 700;
+  width: 70%;
+}
+
+.subtitle {
+  padding-top: 10px;
+  color: var(--secondary-color);
+  font-size: 16px;
+  line-height: 28px;
+  width: 70%;
+  margin-top: 25px;
+}
+
+.page-footer {
+  position: block;
+  background-color: #2447b84f;
+}
+
+.page-footer::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  border-top: 2px solid var(--tertiary-color);
+}
+
+button.close {
+  -webkit-appearance: none;
+  padding: 0;
+  cursor: pointer;
+  background: 0 0;
+  border: 0;
+}
+
+.btn_blue {
+  font-size: 13px;
+  font-weight: 600;
+  color: #5b73d8;
+  background: #fff;
+  height: 24px;
+  padding: 0 10px;
+  border-radius: 3px;
+  border: 1px solid #5b73d8;
+  cursor: pointer;
+}
+
+@media (max-width: 1270px) {
+
+  .page-content:before,
+  .page-content:after {
+    width: calc((100% - 90%) / 2);
+  }
+
+  .content-wrapper {
+    max-width: 90%;
+    padding-left: 10%;
+    padding-right: 10%;
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+@media (max-width: 1024px) {
+
+  .page-content:before,
+  .page-content:after {
+    width: calc((100% - 950px) / 2);
+  }
+
+  .content-wrapper {
+    max-width: 980px;
+  }
+}
+
+@media (max-width: 800px) {
+  .content-wrapper {
+    max-width: 90%;
+    margin: 0 auto;
+    padding: 0 10px;
+  }
+
+  .page-content:before,
+  .page-content:after {
+    display: none;
+  }
+
+  .title {
+    width: 100%;
+  }
+
+  .subtitle {
+    width: 100%;
+  }
+}
+
+
+.homepage-logo-container {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  padding-top: 130px;
+}
+
+.homepage-container {
+  padding-top: 25px;
+}
+
+.homepage-first-area {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.homepage-first-area-left-side {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.homepage-divide-row-area {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.homepage-divide-col-area {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.homepage-title {
+  width: 85% !important;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.inputarea {
+  resize: none;
+  overflow-y: auto;
+}
+
+.homepage-subtitle {
+  width: 85% !important;
+}
+
+.homepage-first-area-right-side {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+}
+
+.homepage-after-title {
+  display: flex;
+}
+
+@media (max-width: 1024px) {
+  .homepage-first-area {
+    /* flex-direction: column; */
+    justify-content: space-between;
+      align-items: center;
   }
-  to {
-    transform: rotate(360deg);
+
+  .homepage-first-area-left-side {
+    display: flex;
+    flex-direction: column;
+    /* Changed: set direction to column */
+    align-items: flex-start;
+    width: 100%;
+    order: 2;
+  }
+
+  .homepage-title {
+    width: 100% !important;
+    /* margin-top: 20px; */
+    order: 2;
+  }
+
+  .inputarea {
+    resize: none;
+    overflow-y: auto;
+  }
+
+  .homepage-subtitle {
+    width: 100% !important;
+    margin-top: 10px;
+    /* order: 3; */
+  }
+
+  .homepage-first-area-right-side {
+    order: 2;
+  }
+
+  .homepage-after-title {
+    flex-direction: column;
   }
 }
