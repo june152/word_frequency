@@ -8,14 +8,29 @@ interface WordForm {
 }
 
 function App() {
+  const [inputText, setInputText] = useState("")
   const [inputWord, setInputWord] = useState("")
   const [textLength, setTextLength] = useState(0)
   const [textNumLimit, setTextNumLimit] = useState(0)
 
   const [wordList, setWordList] = useState([] as WordForm[])
 
+  //기존 입력 로드
   useEffect(() => {
+    if (localStorage.getItem("wordList")) {
+      setWordList(JSON.parse(localStorage.getItem("wordList") as string))
+    }
+    if (localStorage.getItem("inputText")) {
+      setInputText(localStorage.getItem("inputText") as string)
+    }
+  }, [])
 
+  useEffect(() => {
+    if (wordList.length > 0) {
+      localStorage.setItem("wordList", JSON.stringify(wordList))
+    } else {
+      localStorage.removeItem("wordList")
+    }
   }, [wordList])
 
   const handleAddWord = () => {
@@ -96,11 +111,18 @@ function App() {
                           className='inputarea'
                           rows={42}
                           cols={50}
+                          value={inputText}
                           onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
                             let spaceDel = (e.target.value).split(" ").join("")
                             let enterDel = spaceDel.split("\n").join("")
                             setTextLength(enterDel.length)
                             wordCheck(e.target.value)
+                            setInputText(e.target.value)
+                            if ((e.target.value).length > 0) {
+                              localStorage.setItem("inputText", e.target.value)
+                            } else {
+                              localStorage.removeItem("inputText")
+                            }
                             // console.log("글자 수(공백제외) : ", enterDel.length)
                           }}
                           style={{marginBottom: "60px"}}
@@ -151,11 +173,14 @@ function App() {
                       글자 수(공백 제외) : {textLength}
                     </div>
                     <div className="subtitle homepage-subtitle">
+                      <button className='btn_blue_two' onClick={() => {
+                        setWordList([])
+                      }}>전체삭제</button>
                       <ul>
                         {wordList.map((word, index) => (
                           <li key={index}
                           style={{color: word.current > word.limitNum ? "red" : "black"}}
-                          >{word.word} ({word.current} / {word.limitNum}) {word.current > word.limitNum ? "(개수 초과)" : ""} <button onClick={() => handleDeleteWord(word)}>삭제</button></li>
+                          >{word.word} ({word.current} / {word.limitNum}) {word.current > word.limitNum ? "(개수 초과)" : ""} <button className='btn_blue_two' onClick={() => handleDeleteWord(word)}>삭제</button></li>
                         ))}
                       </ul>
                     </div>

@@ -92,6 +92,18 @@ button.close {
   cursor: pointer;
 }
 
+.btn_blue_two {
+  font-size: 13px;
+  font-weight: 600;
+  color: black;
+  background: #fff;
+  height: 24px;
+  padding: 0 10px;
+  border-radius: 3px;
+  border: 1px solid black;
+  cursor: pointer;
+}
+
 @media (max-width: 1270px) {
 
   .page-content:before,
