@@ -197,7 +197,7 @@ button.close {
 .inputarea {
   resize: none;
   border: solid black;
-  overflow-y: hidden;
+  /* overflow-y: hidden; */
   border-radius: 15px;
   padding: 10px 5px 5px 10px;
 }
