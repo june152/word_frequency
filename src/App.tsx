@@ -110,7 +110,7 @@ function App() {
                           placeholder='내용을 입력해줘~'
                           className='inputarea'
                           rows={42}
-                          cols={50}
+                          cols={38}
                           value={inputText}
                           onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
                             let spaceDel = (e.target.value).split(" ").join("")
