@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import './App.css';
 
 interface WordForm {
@@ -83,6 +83,20 @@ function App() {
 
   const handleDeleteWord = (target: WordForm) => {
     setWordList((cur) => cur.filter((item) => item !== target))
+  }
+  
+  const handleAddImage = (e: ChangeEvent<HTMLInputElement>) => {
+    console.log(e.target.files)
+    let fileList: FileList = e.target.files!
+    Array.from(fileList).map((file, idx) => {
+      let dataType = file.type.split('/')[1]
+      let link = document.createElement('a')
+      link.href = window.URL.createObjectURL(file)
+      link.style.display = "none"
+      link.setAttribute("download", `0${idx + 1}.${dataType}`)
+      document.body.appendChild(link)
+      link.click()
+    })
   }
 
   return (
@@ -191,7 +205,21 @@ function App() {
                           rows={15}
                           cols={50}
                   />
-                  <div className='sohee' style={{ width: "100%", textAlign: "right", paddingTop: "50px", fontWeight: "bold" }}>우리 소히 전용~</div>
+                  <div className='sohee' style={{ width: "100%", textAlign: "right", paddingTop: "50px", fontWeight: "bold" }}>
+                    <label
+                      htmlFor='files'
+                    >
+                      <input
+                        type='file'
+                        multiple={true}
+                        name="files"
+                        id="files"
+                        accept='image/*'
+                        onChange={handleAddImage}
+                      />
+                    </label>
+                    우리 소히 전용~
+                  </div>
                   <div className='sohee' style={{width: "91%", textAlign: "right"}}>소히 ❤ 준표</div>
                 </div>
               </div>
