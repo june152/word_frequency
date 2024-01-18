@@ -54,9 +54,22 @@ function App() {
       return
     }
 
-    setWordList([...wordList, { word: inputWord, current: 0, limitNum: textNumLimit }])
-    setInputWord("")
-    setTextNumLimit(0)
+    let tempArr: string[] = inputWord.split("\n")
+    
+    if (tempArr.length === 1) {
+      setWordList([...wordList, { word: inputWord, current: 0, limitNum: textNumLimit }])
+      setInputWord("")
+      setTextNumLimit(0)
+    } else {
+      let inputArr:WordForm[] = []
+      tempArr.map((item) => {
+        inputArr.push({ word: item, current: 0, limitNum: textNumLimit })
+      })
+      setWordList([...wordList, ...inputArr])
+      setInputWord("")
+      setTextNumLimit(0)
+    }
+    
   }
 
   const wordCheck = (allText: string) => {
@@ -139,11 +152,13 @@ function App() {
                             }
                             // console.log("글자 수(공백제외) : ", enterDel.length)
                           }}
-                          style={{marginBottom: "60px"}}
+                          // style={{marginBottom: "60px"}}
                         />
+                        <div className="textcount homepage-subtitle">
+                          글자 수(공백 제외) : {textLength}
+                        </div>
                       </div>
                     </div>
-                    
                   </div>
                 </div>
 
@@ -156,13 +171,14 @@ function App() {
                       <label>
                           단어 : 
                       </label>
-                      <div style={{marginBottom: "20px"}}>
-                        <input className='inputtag' type='text' placeholder='단어 입력'
+                      <div style={{marginBottom: "10px"}}>
+                        <textarea className='inputtag' placeholder='단어 입력'
                             value={inputWord}
-                            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                            onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
                               setInputWord(e.target.value)
                             }}
-                          />
+                        >
+                        </textarea>
                       </div>
                       <label>
                         개수 제한 : 
@@ -186,7 +202,7 @@ function App() {
                     <div className="subtitle homepage-subtitle">
                       글자 수(공백 제외) : {textLength}
                     </div>
-                    <div className="subtitle homepage-subtitle">
+                    <div className="subtitle homepage-subtitle divscroll">
                       <button className='btn_blue_two' onClick={() => {
                         setWordList([])
                       }}>전체삭제</button>
@@ -202,10 +218,10 @@ function App() {
                   <textarea
                           placeholder='메모장'
                           className='inputarea sohee'
-                          rows={15}
+                          rows={10}
                           cols={50}
                   />
-                  <div className='sohee' style={{ width: "100%", textAlign: "right", paddingTop: "50px", fontWeight: "bold" }}>
+                  <div className='sohee' style={{ width: "100%", textAlign: "right", paddingTop: "10px", fontWeight: "bold" }}>
                     <label
                       htmlFor='files'
                     >

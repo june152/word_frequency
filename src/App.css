@@ -63,12 +63,22 @@ html {
 }
 
 .subtitle {
-  padding-top: 10px;
   color: var(--secondary-color);
   font-size: 16px;
   line-height: 28px;
   width: 70%;
-  margin-top: 25px;
+}
+
+.textcount {
+  color: var(--secondary-color);
+  font-size: 16px;
+  line-height: 28px;
+  width: 70%;
+}
+
+.divscroll {
+  overflow-y: scroll;
+  max-height: 325px;
 }
 
 button.close {
@@ -111,6 +121,11 @@ button.close {
     width: calc((100% - 90%) / 2);
   }
 
+  .divscroll {
+    overflow-y: scroll;
+    max-height: 325px;
+  }
+
   .content-wrapper {
     max-width: 90%;
     padding-left: 10%;
@@ -123,6 +138,11 @@ button.close {
   .page-content:before,
   .page-content:after {
     width: calc((100% - 950px) / 2);
+  }
+
+  .divscroll {
+    overflow-y: scroll;
+    max-height: 325px;
   }
 
   .content-wrapper {
@@ -142,6 +162,11 @@ button.close {
     display: none;
   }
 
+  .divscroll {
+    overflow-y: scroll;
+    max-height: 325px;
+  }
+
   .title {
     width: 100%;
   }
@@ -156,8 +181,8 @@ button.close {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 40px;
-  padding-bottom: 40px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   background-color: #ffe9f4;
 }
 
@@ -169,7 +194,7 @@ button.close {
 .homepage-first-area {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  /* align-items: center; */
 }
 
 .homepage-first-area-left-side {
@@ -228,6 +253,11 @@ button.close {
   width: 85% !important;
 }
 
+.divscroll {
+  overflow-y: scroll;
+  max-height: 325px;
+}
+
 .homepage-first-area-right-side {
   display: flex;
   flex-direction: column;
@@ -269,8 +299,13 @@ button.close {
   }
 
   .inputarea {
-    resize: none;
+    /* resize: none; */
     overflow-y: auto;
+  }
+
+  .divscroll {
+    overflow-y: scroll;
+    max-height: 325px;
   }
 
   .sohee {
@@ -280,7 +315,6 @@ button.close {
 
   .homepage-subtitle {
     width: 100% !important;
-    margin-top: 10px;
     /* order: 3; */
   }
 
