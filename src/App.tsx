@@ -215,12 +215,12 @@ function App() {
                       </ul>
                     </div>
                   </div>
-                  <textarea
+                  {/* <textarea
                           placeholder='메모장'
                           className='inputarea sohee'
                           rows={10}
                           cols={50}
-                  />
+                  /> */}
                   <div className='sohee' style={{ width: "100%", textAlign: "right", paddingTop: "10px", fontWeight: "bold" }}>
                     <label
                       htmlFor='files'

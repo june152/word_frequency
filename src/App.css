@@ -279,7 +279,7 @@ button.close {
   .homepage-first-area {
     /* flex-direction: column; */
     justify-content: space-between;
-      align-items: center;
+    /* align-items: center; */
   }
 
   .homepage-first-area-left-side {
@@ -287,8 +287,8 @@ button.close {
     flex-direction: column;
     /* Changed: set direction to column */
     align-items: flex-start;
-    width: 100%;
-    margin-right: 25px;
+    /* width: 100%; */
+    margin-right: 10px;
     order: 2;
   }
 
