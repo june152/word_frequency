@@ -63,7 +63,8 @@ function App() {
     } else {
       let inputArr:WordForm[] = []
       tempArr.map((item) => {
-        inputArr.push({ word: item, current: 0, limitNum: textNumLimit })
+        if(item.length !== 0)
+          inputArr.push({ word: item, current: 0, limitNum: textNumLimit })
       })
       setWordList([...wordList, ...inputArr])
       setInputWord("")
