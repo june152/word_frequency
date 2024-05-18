@@ -18,11 +18,11 @@
 }
 
 html {
-  background-color: #ffe9f4;
+  background-color: #66ecc0;
 }
 
 .page-content {
-  background-color: #ffe9f4;
+  background-color: #66ecc0;
   position: relative;
 }
 
@@ -183,12 +183,12 @@ button.close {
   align-items: center;
   padding-top: 10px;
   padding-bottom: 10px;
-  background-color: #ffe9f4;
+  background-color: #66ecc0;
 }
 
 .homepage-container {
   padding-top: 25px;
-  background-color: #ffe9f4;
+  background-color: #66ecc0;
 }
 
 .homepage-first-area {
