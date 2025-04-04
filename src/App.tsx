@@ -73,6 +73,46 @@ function App() {
     
   }
 
+  const handleAddWordWithoutTab = () => {
+    if (!inputWord) {
+      window.alert("추가할 단어를 입력해줘용 자기야~")
+      return
+    }
+
+    if (inputWord.length === 0) {
+      window.alert("추가할 단어를 입력해줘용 자기야~")
+      return
+    }
+
+    if (!textNumLimit) {
+      window.alert("개수 제한을 입력해줘용 자기야~")
+      return
+    }
+
+    if (textNumLimit <= 0) {
+      window.alert("개수 제한은 0보다 큰 수를 입력해줘용 자기야~")
+      return
+    }
+
+    let tempArr: string[] = inputWord.split(" ")
+    
+    if (tempArr.length === 1) {
+      setWordList([...wordList, { word: inputWord, current: 0, limitNum: textNumLimit }])
+      setInputWord("")
+      setTextNumLimit(0)
+    } else {
+      let inputArr:WordForm[] = []
+      tempArr.map((item) => {
+        if(item.length !== 0)
+          inputArr.push({ word: item, current: 0, limitNum: textNumLimit })
+      })
+      setWordList([...wordList, ...inputArr])
+      setInputWord("")
+      setTextNumLimit(0)
+    }
+    
+  }
+
   const wordCheck = (allText: string) => {
     let idx: number
     let count: number
@@ -199,6 +239,7 @@ function App() {
                       </div>
                       
                       <button className='btn_blue' onClick={handleAddWord}>추가</button>
+                      <button className='btn_blue' onClick={handleAddWordWithoutTab}>공백 제거 후 추가</button>
                     </div>
                     <div className="subtitle homepage-subtitle">
                       글자 수(공백 제외) : {textLength}
