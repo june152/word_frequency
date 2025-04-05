@@ -297,10 +297,13 @@ function App() {
                         <div className="subtitle homepage-subtitle">
                           🔻내용 입력해줘 자기야🔻
                         </div>
+                        <div className="textcount homepage-subtitle">
+                          글자 수(공백 제외) : {textLength}
+                        </div>
                         <textarea
                           placeholder='내용을 입력해줘~'
                           className='inputarea'
-                          rows={42}
+                          rows={48}
                           cols={38}
                           value={inputText}
                           onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -319,9 +322,6 @@ function App() {
                           }}
                           // style={{marginBottom: "60px"}}
                         />
-                        <div className="textcount homepage-subtitle">
-                          글자 수(공백 제외) : {textLength}
-                        </div>
                       </div>
                     </div>
                   </div>
@@ -367,6 +367,34 @@ function App() {
                         <div>
                           <button className='btn_blue' onClick={handleAddFixedWord}>고정 단어 추가</button>
                         </div>
+                        <div className="subtitle homepage-subtitle divscroll">
+                          <button className='btn_blue_two' onClick={() => {
+                            setWordList([])
+                          }}>전체삭제</button>
+                          <div className="subtitle homepage-subtitle">
+                            입력 키워드 개수
+                          </div>
+                          <ul>
+                            {wordList.map((word, index) => (
+                              <li key={index}
+                              style={{color: word.current > word.limitNum ? "red" : "black"}}
+                              >{word.word} ({word.current} / {word.limitNum}) {word.current > word.limitNum ? "(개수 초과)" : ""} <button className='btn_blue_two' onClick={() => handleDeleteWord(word)}>삭제</button></li>
+                            ))}
+                          </ul>
+                          <button className='btn_blue_two' onClick={() => {
+                            duplicationCheck()
+                          }}>중복 키워드 확인</button>
+                          <div className="subtitle homepage-subtitle">
+                            중복 키워드 목록 ({ duplWordCount }개)
+                          </div>
+                          <ul>
+                            {duplList.map((word, index) => (
+                              <li key={index}
+                              style={{color: "red"}}
+                              >{word.word} ({ word.current }개) </li>
+                            ))}
+                          </ul>
+                        </div>
                       </div>
                       <div className='side-area-second'>
                         <ul>
@@ -378,37 +406,10 @@ function App() {
                         </ul>
                       </div>
                     </div>
-                    <div className="subtitle homepage-subtitle">
+                    {/* <div className="subtitle homepage-subtitle">
                       글자 수(공백 제외) : {textLength}
-                    </div>
-                    <div className="subtitle homepage-subtitle divscroll">
-                      <button className='btn_blue_two' onClick={() => {
-                        setWordList([])
-                      }}>전체삭제</button>
-                      <div className="subtitle homepage-subtitle">
-                        입력 키워드 개수
-                      </div>
-                      <ul>
-                        {wordList.map((word, index) => (
-                          <li key={index}
-                          style={{color: word.current > word.limitNum ? "red" : "black"}}
-                          >{word.word} ({word.current} / {word.limitNum}) {word.current > word.limitNum ? "(개수 초과)" : ""} <button className='btn_blue_two' onClick={() => handleDeleteWord(word)}>삭제</button></li>
-                        ))}
-                      </ul>
-                      <button className='btn_blue_two' onClick={() => {
-                        duplicationCheck()
-                      }}>중복 키워드 확인</button>
-                      <div className="subtitle homepage-subtitle">
-                        중복 키워드 목록 ({ duplWordCount }개)
-                      </div>
-                      <ul>
-                        {duplList.map((word, index) => (
-                          <li key={index}
-                          style={{color: "red"}}
-                          >{word.word} ({ word.current }개) </li>
-                        ))}
-                      </ul>
-                    </div>
+                    </div> */}
+                    
                   </div>
                   {/* <textarea
                           placeholder='메모장'
