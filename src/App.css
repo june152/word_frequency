@@ -78,7 +78,7 @@ html {
 
 .divscroll {
   overflow-y: scroll;
-  max-height: 325px;
+  max-height: 525px;
 }
 
 button.close {
@@ -123,7 +123,7 @@ button.close {
 
   .divscroll {
     overflow-y: scroll;
-    max-height: 325px;
+    max-height: 525px;
   }
 
   .content-wrapper {
@@ -142,7 +142,7 @@ button.close {
 
   .divscroll {
     overflow-y: scroll;
-    max-height: 325px;
+    max-height: 525px;
   }
 
   .content-wrapper {
@@ -164,7 +164,7 @@ button.close {
 
   .divscroll {
     overflow-y: scroll;
-    max-height: 325px;
+    max-height: 525px;
   }
 
   .title {
@@ -260,7 +260,7 @@ button.close {
 
 .divscroll {
   overflow-y: scroll;
-  max-height: 325px;
+  max-height: 525px;
 }
 
 .homepage-first-area-right-side {
@@ -310,7 +310,7 @@ button.close {
 
   .divscroll {
     overflow-y: scroll;
-    max-height: 325px;
+    max-height: 525px;
   }
 
   .sohee {
