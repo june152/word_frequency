@@ -13,10 +13,16 @@ function App() {
   const [textLength, setTextLength] = useState(0)
   const [textNumLimit, setTextNumLimit] = useState(0)
 
+  const [fixedWordList, setFixedWordList] = useState([] as WordForm[])
   const [wordList, setWordList] = useState([] as WordForm[])
+  const [duplList, SetDuplList] = useState([] as WordForm[])
+  const [duplWordCount, SetDuplWordCount] = useState(0)
 
   //기존 입력 로드
   useEffect(() => {
+    if (localStorage.getItem("fixedWordList")) {
+      setFixedWordList(JSON.parse(localStorage.getItem("fixedWordList") as string))
+    }
     if (localStorage.getItem("wordList")) {
       setWordList(JSON.parse(localStorage.getItem("wordList") as string))
     }
@@ -32,6 +38,54 @@ function App() {
       localStorage.removeItem("wordList")
     }
   }, [wordList])
+
+  useEffect(() => {
+    if (fixedWordList.length > 0) {
+      localStorage.setItem("fixedWordList", JSON.stringify(fixedWordList))
+    } else {
+      localStorage.removeItem("fixedWordList")
+    }
+  }, [fixedWordList])
+
+  const handleAddFixedWord = () => {
+    if (!inputWord) {
+      window.alert("추가할 단어를 입력해줘용 자기야~")
+      return
+    }
+
+    if (inputWord.length === 0) {
+      window.alert("추가할 단어를 입력해줘용 자기야~")
+      return
+    }
+
+    if (!textNumLimit) {
+      window.alert("개수 제한을 입력해줘용 자기야~")
+      return
+    }
+
+    if (textNumLimit <= 0) {
+      window.alert("개수 제한은 0보다 큰 수를 입력해줘용 자기야~")
+      return
+    }
+
+    let tempArr: string[] = inputWord.split("\n")
+    
+    if (tempArr.length === 1) {
+      setFixedWordList([...fixedWordList, { word: inputWord, current: 0, limitNum: textNumLimit }])
+      setInputWord("")
+      setTextNumLimit(0)
+    } else {
+      let inputArr:WordForm[] = []
+      tempArr.map((item) => {
+        if(item.length !== 0)
+          inputArr.push({ word: item, current: 0, limitNum: textNumLimit })
+      })
+      setFixedWordList([...fixedWordList, ...inputArr])
+      setInputWord("")
+      setTextNumLimit(0)
+    }
+    
+  }
 
   const handleAddWord = () => {
     if (!inputWord) {
@@ -113,6 +167,28 @@ function App() {
     
   }
 
+  const fixedWordCheck = (allText: string) => {
+    let idx: number
+    let count: number
+    let newList: WordForm[] = []
+    fixedWordList.map((word) => {
+      count = 0
+      idx = allText.indexOf(word.word)
+      while (idx !== -1) {
+        count++
+        idx = allText.indexOf(word.word, idx + 1)
+      }
+
+      let wordUpd: WordForm = {
+        word: word.word,
+        current: count,
+        limitNum: word.limitNum,
+      }
+      newList.push(wordUpd)
+    })
+    setFixedWordList(newList)
+  }
+
   const wordCheck = (allText: string) => {
     let idx: number
     let count: number
@@ -133,6 +209,53 @@ function App() {
       newList.push(wordUpd)
     })
     setWordList(newList)
+  }
+
+  // 특수 문자 제거
+  const removeSpecialCharacters = (input: string) => {
+    // 제거할 특수문자: 콤마(,), 느낌표(!), 물음표(?), 마침표(.), 세미콜론(;), 콜론(:), 하이픈(-), 따옴표 등
+    return input.replace(/[.,!?;:'"-]/g, '');
+}
+
+  // 중복 입력 체크
+  const duplicationCheck = () => {
+    let removeSpacialChar:string = removeSpecialCharacters(inputText)
+    let SplitedWordList: string[] = []
+    // 엔터 제거 후 배열
+    let EnterDel = removeSpacialChar.split("\n")
+    // Enterdel 배열의 공백 제거 후 string 병합
+    EnterDel.forEach(dupWordList => {
+      let dupWordSplit = dupWordList.split(" ")
+      SplitedWordList.push(...dupWordSplit)
+    });
+    SetDuplList([])
+    let dupTempList: WordForm[] = []
+    // 길이가 1보다 큰 경우에만 진행
+    if (SplitedWordList.length > 1) {
+      SplitedWordList.forEach(SplitedWord => {
+        let checkVar = dupTempList.find((duplWord) => duplWord.word === SplitedWord)
+        // 없는 단어면 추가
+        if (checkVar === undefined) {
+          let addWordForm: WordForm = {
+            word: SplitedWord,
+            current: 1,
+            limitNum: 1,
+          }
+          dupTempList.push(addWordForm)
+        }
+        else {
+          // 이미 있는 단어인 경우
+          checkVar.current++
+        }
+      });
+    }
+    dupTempList = dupTempList.filter(dupWord => dupWord.current > 1)
+    SetDuplList(dupTempList)
+    SetDuplWordCount(dupTempList.length)
+  }
+
+  const handleDeleteFixedWord = (target: WordForm) => {
+    setFixedWordList((cur) => cur.filter((item) => item !== target))
   }
 
   const handleDeleteWord = (target: WordForm) => {
@@ -185,6 +308,7 @@ function App() {
                             let enterDel = spaceDel.split("\n").join("")
                             setTextLength(enterDel.length)
                             wordCheck(e.target.value)
+                            fixedWordCheck(e.target.value)
                             setInputText(e.target.value)
                             if ((e.target.value).length > 0) {
                               localStorage.setItem("inputText", e.target.value)
@@ -205,41 +329,54 @@ function App() {
 
                 <div className="homepage-first-area-right-side">
                   <div className="title homepage-title">
-                    <div className="subtitle homepage-subtitle">
-                      <div className='homepage-divide-col-area'>
-                        포함 단어 추가하는 곳이에용~
-                      </div>
-                      <label>
-                          단어 : 
-                      </label>
-                      <div style={{marginBottom: "10px"}}>
-                        <textarea className='inputtag' placeholder='단어 입력'
-                            value={inputWord}
-                            onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
-                              setInputWord(e.target.value)
+                    <div className="subtitle homepage-subtitle side-place">
+                      <div className='side-area-first'>
+                        <div className='homepage-divide-col-area'>
+                          포함 단어 추가
+                        </div>
+                        <label>
+                            단어 : 
+                        </label>
+                        <div style={{marginBottom: "10px"}}>
+                          <textarea className='inputtag' placeholder='단어 입력'
+                              value={inputWord}
+                              onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
+                                setInputWord(e.target.value)
+                              }}
+                          >
+                          </textarea>
+                        </div>
+                        <label>
+                          개수 제한 : 
+                        </label>
+                        <div>
+                          <input className='inputtag' type='number' placeholder='개수 제한 입력'
+                            value={textNumLimit}
+                            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                              let num = Number(e.target.value)
+                              if (num < 0) {
+                                setTextNumLimit(0)
+                              } else {
+                                setTextNumLimit(num)
+                              }
                             }}
-                        >
-                        </textarea>
+                            />
+                        </div>
+                        <button className='btn_blue' style={{marginRight : "10px"}} onClick={handleAddWord}>추가</button>
+                        <button className='btn_blue' style={{ marginRight: "10px" }} onClick={handleAddWordWithoutTab}>공백 제거 추가</button>
+                        <div>
+                          <button className='btn_blue' onClick={handleAddFixedWord}>고정 단어 추가</button>
+                        </div>
                       </div>
-                      <label>
-                        개수 제한 : 
-                      </label>
-                      <div>
-                        <input className='inputtag' type='number' placeholder='개수 제한 입력'
-                          value={textNumLimit}
-                          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                            let num = Number(e.target.value)
-                            if (num < 0) {
-                              setTextNumLimit(0)
-                            } else {
-                              setTextNumLimit(num)
-                            }
-                          }}
-                          />
+                      <div className='side-area-second'>
+                        <ul>
+                          {fixedWordList.map((word, index) => (
+                            <li key={index}
+                            style={{color: word.current > word.limitNum ? "red" : "black"}}
+                            >{word.word} ({word.current} / {word.limitNum}) {word.current > word.limitNum ? "(개수 초과)" : ""} <button className='btn_blue_two' onClick={() => handleDeleteFixedWord(word)}>삭제</button></li>
+                          ))}
+                        </ul>
                       </div>
-                      
-                      <button className='btn_blue' onClick={handleAddWord}>추가</button>
-                      <button className='btn_blue' onClick={handleAddWordWithoutTab}>공백 제거 후 추가</button>
                     </div>
                     <div className="subtitle homepage-subtitle">
                       글자 수(공백 제외) : {textLength}
@@ -248,11 +385,27 @@ function App() {
                       <button className='btn_blue_two' onClick={() => {
                         setWordList([])
                       }}>전체삭제</button>
+                      <div className="subtitle homepage-subtitle">
+                        입력 키워드 개수
+                      </div>
                       <ul>
                         {wordList.map((word, index) => (
                           <li key={index}
                           style={{color: word.current > word.limitNum ? "red" : "black"}}
                           >{word.word} ({word.current} / {word.limitNum}) {word.current > word.limitNum ? "(개수 초과)" : ""} <button className='btn_blue_two' onClick={() => handleDeleteWord(word)}>삭제</button></li>
+                        ))}
+                      </ul>
+                      <button className='btn_blue_two' onClick={() => {
+                        duplicationCheck()
+                      }}>중복 키워드 확인</button>
+                      <div className="subtitle homepage-subtitle">
+                        중복 키워드 목록 ({ duplWordCount }개)
+                      </div>
+                      <ul>
+                        {duplList.map((word, index) => (
+                          <li key={index}
+                          style={{color: "red"}}
+                          >{word.word} ({ word.current }개) </li>
                         ))}
                       </ul>
                     </div>
@@ -267,14 +420,14 @@ function App() {
                     <label
                       htmlFor='files'
                     >
-                      <input
+                      {/* <input
                         type='file'
                         multiple={true}
                         name="files"
                         id="files"
                         accept='image/*'
                         onChange={handleAddImage}
-                      />
+                      /> */}
                     </label>
                     우리 소히 전용~
                   </div>
