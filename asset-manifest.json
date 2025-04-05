@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/word_frequency/static/css/main.7d27283f.css",
-    "main.js": "/word_frequency/static/js/main.cae86acb.js",
+    "main.css": "/word_frequency/static/css/main.245d34b0.css",
+    "main.js": "/word_frequency/static/js/main.6f1f5be3.js",
     "static/js/787.b63132b9.chunk.js": "/word_frequency/static/js/787.b63132b9.chunk.js",
     "index.html": "/word_frequency/index.html",
-    "main.7d27283f.css.map": "/word_frequency/static/css/main.7d27283f.css.map",
-    "main.cae86acb.js.map": "/word_frequency/static/js/main.cae86acb.js.map",
+    "main.245d34b0.css.map": "/word_frequency/static/css/main.245d34b0.css.map",
+    "main.6f1f5be3.js.map": "/word_frequency/static/js/main.6f1f5be3.js.map",
     "787.b63132b9.chunk.js.map": "/word_frequency/static/js/787.b63132b9.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.7d27283f.css",
-    "static/js/main.cae86acb.js"
+    "static/css/main.245d34b0.css",
+    "static/js/main.6f1f5be3.js"
   ]
 }
