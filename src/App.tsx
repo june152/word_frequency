@@ -226,6 +226,7 @@ function App() {
     // Enterdel 배열의 공백 제거 후 string 병합
     EnterDel.forEach(dupWordList => {
       let dupWordSplit = dupWordList.split(" ")
+      dupWordSplit = dupWordSplit.filter((word) => word.length > 1)
       SplitedWordList.push(...dupWordSplit)
     });
     SetDuplList([])
